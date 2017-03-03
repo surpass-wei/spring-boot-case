@@ -1,0 +1,85 @@
+#服务器配置
+server:
+  port: 8089
+
+#数据源配置
+spring:
+  http:
+    #配置文件上传参数
+    multipart:
+      max-file-size: 1MB  #设置为-1则不做限制
+      max-request-size: 10MB
+  datasource:
+    url: jdbc:mysql://localhost:3306/test
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+    # 下面为连接池的补充设置，应用到上面所有数据源中
+    # 在Spring Boot1.4.0中驱动配置信息没有问题，但是连接池的配置信息不再支持这里的配置项，
+    # 即无法通过配置项直接支持相应的连接池；这里列出的这些配置项可以通过定制化DataSource来实现。
+    # 初始化大小，最小，最大
+    initialSize: 2
+    minIdle: 5
+    maxActive: 20
+    # 配置获取连接等待超时的时间
+    maxWait: 60000
+    # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+    timeBetweenEvictionRunsMillis: 60000
+    # 配置一个连接在池中最小生存的时间，单位是毫秒
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    # 打开PSCache，并且指定每个连接上PSCache的大小
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+    filters: stat,wall,log4j
+    # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+  jpa:
+    database: mysql
+    show-sql: true
+    hibernate:
+      ddl-auto: update  #配置自动创建|更新|验证数据库表结构
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+    database-platform: MYSQL
+  ########################################################
+  ###THYMELEAF (ThymeleafAutoConfiguration)
+  ########################################################
+  #spring.thymeleaf.prefix=classpath:/templates/
+  #spring.thymeleaf.suffix=.html
+  #spring.thymeleaf.mode=HTML5
+  #spring.thymeleaf.encoding=UTF-8
+  # ;charset=<encoding> is added
+  #spring.thymeleaf.content-type=text/html
+  # set to false for hot refresh
+  thymeleaf:
+    #关闭thymeleaf缓存（开发环境下）
+    cache: false
+  ########################################################
+  ###FREEMARKER (FreeMarkerAutoConfiguration)
+  ########################################################
+  #spring.freemarker.prefix=
+  #spring.freemarker.request-context-attribute=
+  #spring.freemarker.settings.*=
+  #spring.freemarker.suffix=.ftl
+  #spring.freemarker.template-loader-path=classpath:/templates/#comma-separatedlist
+  #spring.freemarker.view-names= #whitelistofviewnamesthatcanberesolved
+  freemarker:
+    allow-request-override: false
+    cache: true
+    check-template-location: true
+    charset: utf-8
+    content-type: text/html
+    expose-request-attributes: false
+    expose-session-attributes: false
+    expose-spring-macro-helpers: false
+
+upload:
+  basePath: C://Users//dell//Desktop//临时文件夹//
