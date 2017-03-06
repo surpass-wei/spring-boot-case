@@ -29,7 +29,7 @@ import java.util.List;
 @ServletComponentScan   //  让spring boot自动管理servlet，不开启的话注解方式注册的servlet不起作用
 //  @ComponentScan(basePackages = {"com.surpass"})  //  @ComponentScan注解进行指定要扫描的包以及要扫描的类
 @EnableConfigurationProperties({DataSourceProperties.class})  //  将配置文件映射到响应的配置类中（spring boot貌似不推荐这么做）
-public class Application extends WebMvcConfigurerAdapter{
+public class BasicApp extends WebMvcConfigurerAdapter{
 
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
@@ -52,6 +52,6 @@ public class Application extends WebMvcConfigurerAdapter{
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(BasicApp.class, args);
     }
 }
