@@ -28,6 +28,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
+    <!--在这里引入了公用模块-->
     <dependencies>
         <!--实现热部署：监听 classpath 下的文件变动，并且会立即重新加载应用-->
         <dependency>
@@ -36,11 +37,6 @@
             <optional>true</optional> <!--设置为true表示依赖不传递-->
         </dependency>
 
-        <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-spring</artifactId>
-            <version>1.2.4</version>
-        </dependency>
     </dependencies>
 
 </project>
