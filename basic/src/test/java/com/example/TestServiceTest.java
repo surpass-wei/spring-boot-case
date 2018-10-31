@@ -28,4 +28,9 @@ public class TestServiceTest {
     public void testGetName() {
         Assert.assertEquals("Test", testService.getName());
     }
+    @Test
+    public void test2() {
+        String a = "-------------sdf  sdf";
+        System.out.println(a.replaceAll(" ",""));
+    }
 }

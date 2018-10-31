@@ -1,17 +1,17 @@
 package com.surpass;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cache.annotation.EnableCaching;
 
 /**
- * spring boot 启动类
- * Created by surpass.wei@gmail.com on 2017/3/3.
+ * Created by surpass.wei@gmail.com on 2017/4/10.
  */
 @SpringBootApplication
-public class RedisDemoApp {
+@MapperScan("com.surpass.*.mapper")
+public class MybatisDemoApp {
 
     public static void main(String[] args) {
-        SpringApplication.run(RedisDemoApp.class, args);
+        SpringApplication.run(MybatisDemoApp.class, args);
     }
 }
